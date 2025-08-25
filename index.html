@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Capture Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>Get in Touch</h1>
+    <form 
+      action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" 
+      method="POST" 
+      onsubmit="return validateForm()">
+
+      <!-- Salesforce Required Hidden Fields -->
+      <input type="hidden" name="oid" value="00D1U000000uI2U">
+      <!-- ✅ Update with your actual Render domain after deployment -->
+      <input type="hidden" name="retURL" value="https://your-app.onrender.com/thank-you.html">
+
+      <!-- Lead Fields -->
+      <label for="first_name">First Name *</label>
+      <input id="first_name" name="first_name" type="text" required>
+
+      <label for="last_name">Last Name *</label>
+      <input id="last_name" name="last_name" type="text" required>
+
+      <label for="phone">Phone *</label>
+      <input id="phone" name="phone" type="tel" required>
+
+      <label for="email">Email *</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="company">Company</label>
+      <input id="company" name="company" type="text">
+
+      <label for="street">Street</label>
+      <textarea id="street" name="street"></textarea>
+
+      <label for="city">City</label>
+      <input id="city" name="city" type="text">
+
+      <label for="state">State/Province</label>
+      <input id="state" name="state" type="text">
+
+      <label for="00N3t00000GMMHm">Zip Code</label>
+      <input id="00N3t00000GMMHm" name="00N3t00000GMMHm" type="text">
+
+      <label for="00N3t00000Irfu4">Company Zip/Postal Code</label>
+      <input id="00N3t00000Irfu4" name="00N3t00000Irfu4" type="text">
+
+      <label for="lead_source">Lead Source</label>
+      <select id="lead_source" name="lead_source">
+        <option value="Chrome">Chrome</option>
+      </select>
+
+      <label for="00N1U00000SkPG7">Gender</label>
+      <select id="00N1U00000SkPG7" name="00N1U00000SkPG7">
+        <option value="">--None--</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+      </select>
+
+      <label for="00N1U00000MKhcu">Date of Birth</label>
+      <input id="00N1U00000MKhcu" name="00N1U00000MKhcu" type="date">
+
+      <label for="00N1U00000TwZWd">Medicare Part A?</label>
+      <select id="00N1U00000TwZWd" name="00N1U00000TwZWd">
+        <option value="">--None--</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+
+      <label for="00N1U00000TwZWi">Medicare Part B?</label>
+      <select id="00N1U00000TwZWi" name="00N1U00000TwZWi">
+        <option value="">--None--</option>
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+
+      <button type="submit">Submit Lead</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+
+      // Basic email check
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email.");
+        return false;
+      }
+
+      // Basic phone check (10+ digits)
+      const phoneRegex = /^[0-9]{10,}$/;
+      if (!phoneRegex.test(phone)) {
+        alert("Please enter a valid phone number (at least 10 digits).");
+        return false;
+      }
+
+      return true; // allow submission
+    }
+  </script>
+</body>
+</html>
